@@ -1,0 +1,696 @@
+# page info
+pageInfo:
+  title: 🏠 Robert's Homelab
+  description: Dashboard - Raspberry Pi Cluster & Services
+  logo: https://i.ibb.co/fGnr01r/astro-dab.png
+  footerText: '<iframe src="https://dublincalling.duckdns.org/public/dublincalling/embed?theme=dark" frameborder="0" allowtransparency="true" style="width: 100%; min-height: 150px; border: 0; border-radius: 12px;"></iframe>'
+  navLinks:
+    - title: 📻 Dublin Calling
+      path: https://dublincalling.duckdns.org/public/dublincalling
+    - title: 📰 NewsBot
+      path: https://github.com/robcarv/news_colletector
+    - title: 🐙 GitHub
+      path: https://github.com/robcarv
+
+appConfig:
+  theme: dracula
+  customCss: >
+    @media (min-width: 1400px) {
+      .home .item-group-container:not(.item-size-large) { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (min-width: 1100px) and (max-width: 1399px) {
+      .home .item-group-container:not(.item-size-large) { grid-template-columns: repeat(3, 1fr); }
+    }
+    .item-group .item-group-heading { font-size: 1.0rem !important; letter-spacing: 0.3px; }
+    .item-group .item-group-subtitle { font-size: 0.75rem !important; opacity: 0.6; }
+    .item-group.item-size-medium .item-group-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important; }
+    .item .item-title { font-size: 0.75rem !important; }
+    .item .item-description { font-size: 0.6rem !important; }
+    .glances-current-cores, .glances-current-mem, .glances-cpu-temp, .glances-disk-space {
+      min-height: 60px !important; padding: 6px !important;
+    }
+    .glances-current-cores .glances-label, .glances-current-mem .glances-label,
+    .glances-cpu-temp .glances-label, .glances-disk-space .glances-label { font-size: 0.65rem !important; }
+    .weather-widget { min-height: 90px !important; }
+    iframe { border-radius: 8px !important; }
+    .clock-widget { min-height: 70px !important; padding: 5px !important; }
+    .clock-widget .clock-time { font-size: 1.3rem !important; }
+    .clock-widget .clock-date { font-size: 0.65rem !important; }
+  fontAwesomeKey: c94dc2b452
+  enableFontAwesome: true
+  hideSettings: true
+  auth:
+    users:
+      - user: robert
+        hash: 3F5CD94C55B20ADEA34EC11DE451928E952A51899C5891602C69F05310501CE3
+        type: admin
+  preventWriteToDisk: true
+  webSearch:
+    searchEngine: duckduckgo
+    openingMethod: newtab
+  statusCheckInterval: 60
+
+sections:
+
+  # ═════════════════════════════════════════════════════════════════════════
+  #  1. NOW PLAYING
+  # ═════════════════════════════════════════════════════════════════════════
+  # NOW PLAYING
+  - name: 📻 Dublin Calling - Now Playing
+    icon: fas fa-broadcast-tower
+    displayData:
+      itemSize: medium
+    items:
+      - title: Listen Live
+        description: ▶️ Tune in now!
+        icon: hl-azuracast
+        url: https://dublincalling.duckdns.org/public/dublincalling
+        color: '#1DB954'
+        statusCheck: true
+      - title: Request Song
+        description: 💬 Via Telegram
+        icon: hl-telegram
+        url: https://t.me/Siteschanges_bot
+        color: '#229ED9'
+      - title: Radio Dashboard
+        description: ⚙️ Admin
+        icon: hl-azuracast
+        url: https://dublincalling.duckdns.org/login
+        color: '#7C3AED'
+    widgets:
+      - type: embed
+        options:
+          html: |
+            <div id="radio-widget" style="font-family:system-ui;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:12px;padding:16px;color:#fff;text-align:center">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                <a href="https://dublincalling.duckdns.org/public/dublincalling" target="_blank">
+                  <img id="radio-art" src="https://dublincalling.duckdns.org/api/nowplaying/dublincalling/art" width="120" height="120" style="border-radius:10px;object-fit:cover" alt="Album Art">
+                </a>
+                <div style="flex:1;text-align:left;min-width:0">
+                  <div id="radio-title" style="font-size:16px;font-weight:700;color:#00d2d3">—</div>
+                  <div id="radio-artist" style="font-size:14px;color:#ccc;margin-top:2px">—</div>
+                  <div id="radio-album" style="font-size:12px;color:#888;margin-top:1px">—</div>
+                </div>
+              </div>
+              <audio controls style="width:100%;border-radius:8px;margin-bottom:10px">
+                <source src="https://dublincalling.duckdns.org/listen/dublincalling/radio.mp3" type="audio/mpeg">
+              </audio>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+                <div style="background:rgba(255,255,255,0.06);border-radius:8px;padding:8px">
+                  <div style="font-size:9px;text-transform:uppercase;color:#888">Ouvintes</div>
+                  <div id="radio-listeners" style="font-size:18px;font-weight:700;color:#1DB954">—</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.06);border-radius:8px;padding:8px">
+                  <div style="font-size:9px;text-transform:uppercase;color:#888">Duração</div>
+                  <div id="radio-duration" style="font-size:18px;font-weight:700;color:#00d2d3">—</div>
+                </div>
+              </div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:8px;margin-bottom:10px;text-align:left">
+                <div style="font-size:9px;text-transform:uppercase;color:#888;margin-bottom:4px">⏭️ Próxima</div>
+                <div id="radio-next-text" style="font-size:12px;color:#ccc">—</div>
+              </div>
+              <div style="text-align:left">
+                <div style="font-size:9px;text-transform:uppercase;color:#888;margin-bottom:4px">🎵 Tocadas Agora</div>
+                <div id="radio-history-list"></div>
+              </div>
+            </div>
+            <script>
+            setTimeout(async function(){
+              try {
+                const r = await fetch('https://dublincalling.duckdns.org/api/nowplaying/dublincalling');
+                const d = await r.json();
+                const np = d.now_playing || {};
+                const s = np.song || {};
+                const nxt = (d.playing_next && d.playing_next.song) || {};
+                const hist = d.song_history || [];
+                const ls = d.listeners || {};
+                const $ = (id) => document.getElementById(id);
+                $('radio-title').textContent = s.title || '—';
+                $('radio-artist').textContent = s.artist || '—';
+                $('radio-album').textContent = (s.album ? '💿 '+s.album : '') + (s.year ? ' · '+s.year : '');
+                $('radio-listeners').textContent = (ls.total||0) + ' ouvinte' + (ls.total!==1?'s':'');
+                const dur = np.duration || 0;
+                $('radio-duration').textContent = Math.floor(dur/60) + ':' + String(dur%60).padStart(2,'0');
+                $('radio-next-text').textContent = nxt.artist ? nxt.artist+' - '+nxt.title : '—';
+                const hl = $('radio-history-list');
+                hl.innerHTML = hist.slice(0,5).map(h => {
+                  const so = h.song || {};
+                  return '<div style="font-size:11px;color:#999;padding:2px 0;border-bottom:1px solid rgba(255,255,255,0.04)">🎵 '+(so.artist||'?')+' - '+(so.title||'?')+'</div>';
+                }).join('') || '<div style="font-size:11px;color:#666">—</div>';
+              } catch(e) {
+                document.getElementById('radio-title').textContent = 'Offline';
+                document.getElementById('radio-artist').textContent = 'Rádio temporariamente indisponível';
+              }
+            }, 100);
+            </script>
+        id: embed_nowplaying
+
+  - name: 🕐 Time & Weather
+    icon: fad fa-clock
+    displayData:
+      hideForGuests: true
+    widgets:
+      - type: clock
+        options:
+          timeZone: Europe/Dublin
+          format: en-GB
+          title: 🇮🇪 Dublin
+          hideSeconds: true
+        id: clock_dublin
+      - type: clock
+        options:
+          timeZone: America/Sao_Paulo
+          format: pt-BR
+          title: 🇧🇷 São Paulo
+          hideSeconds: true
+        id: clock_sp
+      - type: weather
+        options:
+          city: Mullingar, IE
+          title: 🌤️ Mullingar
+          hideDetails: false
+        id: weather_mullingar
+
+  # ═════════════════════════════════════════════════════════════════════════
+  #  3. QUICK TOOLS (links)
+  # ═════════════════════════════════════════════════════════════════════════
+  - name: 🛠️ Quick Tools
+    icon: fas fa-tools
+    displayData:
+      itemSize: medium
+    items:
+      - title: CyberChef
+        description: Decode, Encode, Crypto
+        icon: favicon
+        url: https://gchq.github.io/CyberChef
+      - title: JSON Formatter
+        description: Validar & Format JSON
+        icon: favicon
+        url: https://jsonformatter.org
+      - title: Regex 101
+        description: Testar Expressões
+        icon: favicon
+        url: https://regex101.com
+      - title: Diff Checker
+        description: Comparar Texto
+        icon: favicon
+        url: https://www.diffchecker.com
+      - title: Cron Guru
+        description: Editor Cron
+        icon: favicon
+        url: https://crontab.guru
+      - title: Explain Shell
+        description: Explicar Comandos
+        icon: favicon
+        url: https://explainshell.com
+      - title: Code Beautify
+        description: HTML/JS/CSS Format
+        icon: favicon
+        url: https://codebeautify.org
+      - title: QR Generator
+        description: Gerar QR Codes
+        icon: favicon
+        url: https://www.qr-code-generator.com
+      - title: Postman
+        description: API Testing
+        icon: si-postman
+        url: https://www.postman.com
+      - title: Selenium
+        description: Browser Automation
+        icon: favicon
+        url: https://www.selenium.dev
+      - title: Playwright
+        description: E2E Testing
+        icon: favicon
+        url: https://playwright.dev
+      - title: Cypress
+        description: Frontend Testing
+        icon: favicon
+        url: https://www.cypress.io
+      - title: JUnit
+        description: Java Unit Tests
+        icon: favicon
+        url: https://junit.org
+      - title: Rest Assured
+        description: REST API Testing
+        icon: favicon
+        url: https://rest-assured.io
+      - title: SonarQube
+        description: Code Quality
+        icon: si-sonarqube
+        url: https://www.sonarsource.com/products/sonarqube
+      - title: Grafana
+        description: Metrics Dashboard
+        icon: si-grafana
+        url: https://grafana.com
+      - title: Prometheus
+        description: Monitoring
+        icon: si-prometheus
+        url: https://prometheus.io
+      - title: Loki
+        description: Log Aggregation
+        icon: favicon
+        url: https://grafana.com/oss/loki
+      - title: Apache JMeter
+        description: Performance Test
+        icon: favicon
+        url: https://jmeter.apache.org
+      - title: Locust
+        description: Load Testing
+        icon: favicon
+        url: https://locust.io
+      - title: K6
+        description: Load Testing
+        icon: favicon
+        url: https://k6.io
+      - title: Jenkins
+        description: CI/CD
+        icon: si-jenkins
+        url: https://www.jenkins.io
+      - title: GitLab CI
+        description: CI/CD Pipelines
+        icon: si-gitlab
+        url: https://docs.gitlab.com/ee/ci
+      - title: Allure Framework
+        description: Test Reports
+        icon: favicon
+        url: https://qameta.io/allure-report
+      - title: Swagger
+        description: API Documentation
+        icon: favicon
+        url: https://swagger.io
+      - title: Insomnia
+        description: API Client
+        icon: favicon
+        url: https://insomnia.rest
+      - title: Docker Hub
+        description: Container Registry
+        icon: hl-docker
+        url: https://hub.docker.com
+      - title: Kubernetes Docs
+        description: K8s Documentation
+        icon: si-kubernetes
+        url: https://kubernetes.io/docs
+
+  # ═════════════════════════════════════════════════════════════════════════
+  #  4. SOCIAL & NEWS
+  # ═════════════════════════════════════════════════════════════════════════
+  - name: 📱 Social & News
+    icon: far fa-thumbs-up
+    displayData:
+      itemSize: medium
+    items:
+      - title: YouTube
+        icon: si-youtube
+        url: https://youtube.com
+      - title: Instagram
+        icon: si-instagram
+        url: https://www.instagram.com
+      - title: LinkedIn
+        icon: si-linkedin
+        url: https://www.linkedin.com/in/rac-carvalho
+      - title: BBC News
+        icon: si-bbc
+        url: https://bbc.co.uk/news
+      - title: RTE News
+        icon: hl-rte
+        url: https://www.rte.ie/news
+      - title: The Guardian
+        icon: hl-theguardian
+        url: https://theguardian.com
+      - title: Irish Independent
+        icon: favicon
+        url: https://www.independent.ie
+      - title: GitHub
+        icon: hl-github
+        url: https://github.com/robcarv
+      - title: Dublin Calling
+        icon: hl-azuracast
+        url: https://dublincalling.duckdns.org/public/dublincalling
+      - title: Stack Overflow
+        icon: si-stackoverflow
+        url: https://stackoverflow.com
+      - title: Dev.to
+        icon: si-devto
+        url: https://dev.to
+
+  # ═════════════════════════════════════════════════════════════════════════
+  #  5. SERVICOS DOS PIS
+  # ═════════════════════════════════════════════════════════════════════════
+  - name: 🍓 Pi 4 · 192.168.68.102
+    subtitle: Pi-hole · Docker · Pi.Alert · Wallos
+    icon: https://img.icons8.com/color/344/raspberry-pi.png
+    displayData:
+      itemSize: medium
+      cols: 1
+    items:
+      - title: Portainer
+        description: Gerenciar Docker
+        icon: hl-portainer
+        url: http://192.168.68.102:9443
+        statusCheckAllowInsecure: true
+        statusCheck: true
+      - title: Pi-hole
+        description: DNS Ad Blocker
+        icon: hl-pihole
+        url: http://192.168.68.102/admin/login.php
+        statusCheck: true
+      - title: Nginx Proxy Manager
+        description: Reverse Proxy
+        icon: hl-nginx
+        url: http://192.168.68.117:82
+        statusCheck: true
+      - title: Duplicati
+        description: Backups
+        icon: hl-duplicati
+        url: http://192.168.68.102:8270
+        statusCheckAllowInsecure: true
+        statusCheckAcceptCodes: '403'
+      - title: Speedtest Tracker
+        description: Teste de Velocidade
+        icon: favicon
+        url: http://192.168.68.102:8840/admin/login
+        statusCheck: true
+      - title: Wallos
+        description: Assinaturas
+        icon: favicon
+        url: https://walloshome.duckdns.org
+        statusCheck: true
+      - title: Pi.Alert
+        description: Dispositivos na Rede
+        icon: favicon
+        url: http://192.168.68.102:20211
+        statusCheck: true
+      - title: Glances
+        description: Monitoramento
+        icon: favicon
+        url: http://192.168.68.102:61208
+        statusCheck: true
+
+  - name: 🍓 Pi 5 · 192.168.68.108
+    subtitle: AzuraCast · Dublin Calling · Uptime Kuma
+    icon: https://img.icons8.com/color/344/raspberry-pi.png
+    displayData:
+      itemSize: medium
+      cols: 1
+    items:
+      - title: AzuraCast Admin
+        description: Painel da Rádio
+        icon: hl-azuracast
+        url: https://dublincalling.duckdns.org/login
+        statusCheck: true
+      - title: Dublin Calling
+        description: Player Público
+        icon: hl-azuracast
+        url: https://dublincalling.duckdns.org/public/dublincalling
+        statusCheck: true
+      - title: Uptime Kuma
+        description: Monitor de Uptime
+        icon: hl-uptimekuma
+        url: https://uptimehome.duckdns.org/dashboard
+        statusCheck: true
+      - title: Changedetection
+        description: Monitor de Sites
+        icon: favicon
+        url: http://192.168.68.108:5500
+        statusCheck: true
+      - title: Duplicati
+        description: Backups
+        icon: hl-duplicati
+        url: http://192.168.68.108:8270
+        statusCheckAllowInsecure: true
+        statusCheckAcceptCodes: '403'
+      - title: Glances
+        description: Monitoramento
+        icon: favicon
+        url: http://192.168.68.108:61208
+        statusCheck: true
+      - title: Whisparr
+        description: 🎬 Movie Manager
+        icon: favicon
+        url: http://192.168.68.108:6969
+        statusCheck: true
+      - title: Prowlarr
+        description: 🔍 Indexer Manager
+        icon: favicon
+        url: http://192.168.68.108:9696
+        statusCheck: true
+      - title: qBittorrent
+        description: ⬇️ Torrent Client
+        icon: favicon
+        url: http://192.168.68.108:8080
+        statusCheck: true
+
+  - name: 🖥️ TrueNAS · 192.168.68.124
+    subtitle: NVMe Storage · 10.9TB Pool
+    icon: https://www.truenas.com/img/favicon/favicon-32x32.png
+    displayData:
+      itemSize: medium
+      cols: 1
+    items:
+      - title: TrueNAS Web UI
+        description: Painel Admin
+        icon: hl-terminal
+        url: https://192.168.68.124
+        statusCheckAllowInsecure: true
+        statusCheck: true
+      - title: TrueNAS Storage
+        description: 💾 Gerenciar Discos
+        icon: hl-dashboard
+        url: https://192.168.68.124/ui/storage
+        statusCheckAllowInsecure: true
+      - title: TrueNAS Apps
+        description: 📦 Apps Instalados
+        icon: hl-applications
+        url: https://192.168.68.124/ui/apps/installed
+        statusCheckAllowInsecure: true
+      - title: Jellyfin
+        description: 🎬 Movies & Media
+        icon: https://jellyfin.org/images/logo.svg
+        url: https://192.168.68.124:30013/web
+        statusCheckAllowInsecure: true
+        statusCheck: true
+      - title: Jellyfin Login
+        description: 🔑 Admin Login
+        icon: hl-key
+        url: https://192.168.68.124:30041/auth/login
+        statusCheckAllowInsecure: true
+      - title: Tailscale Admin
+        description: 🔒 VPN Management
+        icon: https://tailscale.com/favicon.ico
+        url: https://192.168.68.124/ui/apps/installed/community/tailscale
+        statusCheckAllowInsecure: true
+      - title: SMB CloudBackup
+        description: ☁️ Backup Share
+        icon: hl-network-drive
+        url: file://192.168.68.124/cloudbackup
+      - title: SMB Media
+        description: 🎥 Whisparr Downloads + Library
+        icon: hl-network-drive
+        url: file://192.168.68.124/Media
+
+  - name: 🍓 Pi 501 · 192.168.68.117
+    subtitle: Hermes Agent · Dashy · NewsBot
+    icon: https://img.icons8.com/color/344/raspberry-pi.png
+    displayData:
+      itemSize: medium
+      cols: 1
+    items:
+      - title: Dashy
+        description: Este Dashboard!
+        icon: hl-dashy
+        url: http://192.168.68.117:8200
+        statusCheck: true
+      - title: Hermes Agent
+        description: AI CLI Agent
+        icon: hl-terminal
+        url: https://github.com/nousresearch/hermes-agent
+      - title: Discount Bandit
+        description: Monitor de Descontos
+        icon: favicon
+        url: http://192.168.68.117:8780
+        statusCheck: true
+      - title: NewsBot
+        description: Coletor RSS Notícias
+        icon: hl-github
+        url: https://github.com/robcarv/news_colletector
+
+  # ═════════════════════════════════════════════════════════════════════════
+  #  6. GLANCES - CPU, RAM, TEMP, DISK
+  # ═════════════════════════════════════════════════════════════════════════
+  - name: ⚡ CPU Cores
+    subtitle: Pi 4 · 192.168.68.102  |  Pi 5 · 192.168.68.108  |  Pi 501 · 192.168.68.117
+    icon: fas fa-microchip
+    displayData:
+      cols: 3
+    widgets:
+      - type: gl-current-cores
+        options:
+          hostname: http://192.168.68.102:61208
+          title: 🍓 Pi 4 · 192.168.68.102 · raspberrypi4
+        id: cpu_pi4
+      - type: gl-current-cores
+        options:
+          hostname: http://192.168.68.108:61208
+          title: 🍓 Pi 5 · 192.168.68.108 · raspberrypi5
+        id: cpu_pi5
+      - type: gl-current-cores
+        options:
+          hostname: http://192.168.68.117:61208
+          title: 🍓 Pi 501 · 192.168.68.117 · raspberrypi501
+        id: cpu_pi501
+
+  - name: 🧠 Memory Usage
+    subtitle: Pi 4 · 192.168.68.102  |  Pi 5 · 192.168.68.108  |  Pi 501 · 192.168.68.117
+    icon: fas fa-memory
+    displayData:
+      cols: 3
+    widgets:
+      - type: gl-current-mem
+        options:
+          hostname: http://192.168.68.102:61208
+          title: 🍓 Pi 4 · 192.168.68.102 · raspberrypi4
+        id: mem_pi4
+      - type: gl-current-mem
+        options:
+          hostname: http://192.168.68.108:61208
+          title: 🍓 Pi 5 · 192.168.68.108 · raspberrypi5
+        id: mem_pi5
+      - type: gl-current-mem
+        options:
+          hostname: http://192.168.68.117:61208
+          title: 🍓 Pi 501 · 192.168.68.117 · raspberrypi501
+        id: mem_pi501
+
+  - name: 🌡️ Temperature
+    subtitle: Pi 4 · 192.168.68.102  |  Pi 5 · 192.168.68.108  |  Pi 501 · 192.168.68.117
+    icon: fas fa-thermometer-half
+    displayData:
+      cols: 3
+    widgets:
+      - type: gl-cpu-temp
+        options:
+          hostname: http://192.168.68.102:61208
+          title: 🍓 Pi 4 · 192.168.68.102 · raspberrypi4
+        id: temp_pi4
+      - type: gl-cpu-temp
+        options:
+          hostname: http://192.168.68.108:61208
+          title: 🍓 Pi 5 · 192.168.68.108 · raspberrypi5
+        id: temp_pi5
+      - type: gl-cpu-temp
+        options:
+          hostname: http://192.168.68.117:61208
+          title: 🍓 Pi 501 · 192.168.68.117 · raspberrypi501
+        id: temp_pi501
+
+  - name: 💾 Disk Space
+    subtitle: Pi 4 · 192.168.68.102  |  Pi 5 · 192.168.68.108  |  Pi 501 · 192.168.68.117
+    icon: fas fa-hdd
+    displayData:
+      cols: 3
+    widgets:
+      - type: gl-disk-space
+        options:
+          hostname: http://192.168.68.102:61208
+          title: 🍓 Pi 4 · 192.168.68.102 · raspberrypi4
+        id: disk_pi4
+      - type: gl-disk-space
+        options:
+          hostname: http://192.168.68.108:61208
+          title: 🍓 Pi 5 · 192.168.68.108 · raspberrypi5
+        id: disk_pi5
+      - type: gl-disk-space
+        options:
+          hostname: http://192.168.68.117:61208
+          title: 🍓 Pi 501 · 192.168.68.117 · raspberrypi501
+        id: disk_pi501
+
+  # ═════════════════════════════════════════════════════════════════════════
+  #  7. CPU HISTORY
+  # ═════════════════════════════════════════════════════════════════════════
+  - name: 📈 CPU History
+    subtitle: Últimos 60 minutos
+    icon: fas fa-chart-line
+    displayData:
+      cols: 3
+    widgets:
+      - type: gl-cpu-history
+        options:
+          hostname: http://192.168.68.102:61208
+          title: 🍓 Pi 4 · 192.168.68.102 · raspberrypi4
+        id: cpu_h_pi4
+      - type: gl-cpu-history
+        options:
+          hostname: http://192.168.68.108:61208
+          title: 🍓 Pi 5 · 192.168.68.108 · raspberrypi5
+        id: cpu_h_pi5
+      - type: gl-cpu-history
+        options:
+          hostname: http://192.168.68.117:61208
+          title: 🍓 Pi 501 · 192.168.68.117 · raspberrypi501
+        id: cpu_h_pi501
+
+  # ═════════════════════════════════════════════════════════════════════════
+  #  8. NETWORK TRAFFIC
+  # ═════════════════════════════════════════════════════════════════════════
+  - name: 🌐 Network Traffic
+    subtitle: Atividade de Rede
+    icon: fas fa-network-wired
+    displayData:
+      cols: 3
+    widgets:
+      - type: gl-network-interfaces
+        options:
+          hostname: http://192.168.68.102:61208
+          title: 🍓 Pi 4 · 192.168.68.102 · raspberrypi4
+        id: net_pi4
+      - type: gl-network-interfaces
+        options:
+          hostname: http://192.168.68.108:61208
+          title: 🍓 Pi 5 · 192.168.68.108 · raspberrypi5
+        id: net_pi5
+      - type: gl-network-interfaces
+        options:
+          hostname: http://192.168.68.117:61208
+          title: 🍓 Pi 501 · 192.168.68.117 · raspberrypi501
+        id: net_pi501
+
+  # ═════════════════════════════════════════════════════════════════════════
+  #  9. SYSTEM ALERTS
+  # ═════════════════════════════════════════════════════════════════════════
+  - name: ⚠️ System Alerts
+    subtitle: Notificações e Alertas
+    icon: fas fa-exclamation-triangle
+    displayData:
+      cols: 3
+    widgets:
+      - type: gl-alerts
+        options:
+          hostname: http://192.168.68.102:61208
+          title: 🍓 Pi 4 · 192.168.68.102 · raspberrypi4
+        id: alert_pi4
+      - type: gl-alerts
+        options:
+          hostname: http://192.168.68.108:61208
+          title: 🍓 Pi 5 · 192.168.68.108 · raspberrypi5
+        id: alert_pi5
+      - type: gl-alerts
+        options:
+          hostname: http://192.168.68.117:61208
+          title: 🍓 Pi 501 · 192.168.68.117 · raspberrypi501
+        id: alert_pi501
+
+  # ═════════════════════════════════════════════════════════════════════════
+  #  10. RADIO SCHEDULE
+  # ═════════════════════════════════════════════════════════════════════════
+  - name: 📅 Radio Schedule
+    subtitle: Dublin Calling - Programação
+    icon: fad fa-calendar-alt
+    displayData:
+      cols: 1
+    widgets:
+      - type: embed
+        options:
+          html: '<iframe src="https://dublincalling.duckdns.org/public/dublincalling/schedule/embed?theme=dark" frameborder="0" allowtransparency="true" style="width:100%;min-height:350px;border:0;border-radius:8px;"></iframe>'
+        id: embed_schedule
