@@ -179,6 +179,11 @@ sections:
     displayData:
       itemSize: medium
     items:
+      - title: Uptime Kuma Status
+        description: 📊 Status de Todos os Serviços
+        icon: hl-uptimekuma
+        url: http://192.168.68.108:3001/status/homelab
+        statusCheck: true
       - title: CyberChef
         description: Decode, Encode, Crypto
         icon: favicon
@@ -435,6 +440,16 @@ sections:
         icon: favicon
         url: http://192.168.68.108:9696
         statusCheck: true
+      - title: ClamAV Antivirus
+        description: 🔒 Scanner de Vírus (0 infectados)
+        icon: fas fa-shield-alt
+        url: http://192.168.68.108:3310
+        statusCheck: false
+      - title: Torrent Pipeline
+        description: 📋 Documentação da Arquitetura
+        icon: hl-documentation
+        url: file:///home/robert/Documents/documentacao/arquitetura_pipeline.md
+        statusCheck: false
       - title: qBittorrent
         description: ⬇️ Torrent Client
         icon: favicon
