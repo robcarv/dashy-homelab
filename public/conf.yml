@@ -374,7 +374,7 @@ sections:
       - title: Speedtest Tracker
         description: Teste de Velocidade
         icon: favicon
-        url: http://192.168.68.102:8840/admin/login
+        url: http://192.168.68.117:8089
         statusCheck: true
       - title: Wallos
         description: Assinaturas
@@ -433,12 +433,12 @@ sections:
       - title: Radarr
         description: 🎬 Movie Manager
         icon: favicon
-        url: http://192.168.68.108:6969
+        url: http://192.168.68.117:6969
         statusCheck: true
       - title: Prowlarr
         description: 🔍 Indexer Manager
         icon: favicon
-        url: http://192.168.68.108:9696
+        url: http://192.168.68.117:9696
         statusCheck: true
       - title: qBittorrent
         description: ⬇️ Download Client
