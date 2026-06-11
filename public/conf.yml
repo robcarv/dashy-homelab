@@ -435,6 +435,12 @@ sections:
         icon: favicon
         url: http://192.168.68.117:6969
         statusCheck: true
+      - title: Portfolio
+        description: 🌐 Robert Carvalho · QA Automation
+        icon: favicon
+        url: https://robcarv.github.io
+        statusCheck: true
+        target: newtab
       - title: Prowlarr
         description: 🔍 Indexer Manager
         icon: favicon
