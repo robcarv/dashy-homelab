@@ -1,0 +1,5 @@
+# Configuracao com IPs internos (removido do tracking publico)
+conf.yml
+public/conf.yml
+*.backup.*
+scripts/
