@@ -531,6 +531,11 @@ sections:
         icon: favicon
         url: http://192.168.68.117:8780
         statusCheck: true
+      - title: Gallery Downloader
+        description: 🖼️ Comic Library Manager
+        icon: favicon
+        url: http://192.168.68.117:8787
+        statusCheck: true
       - title: NewsBot
         description: Coletor RSS Notícias
         icon: hl-github
