@@ -10,6 +10,8 @@ Dashboard configuration for Robert's home server cluster.
 
 **Portfolio:** https://robcarv.github.io
 
+**Radio:** https://dublincalling.duckdns.org/public/dublincalling
+
 ## Infrastructure Overview
 
 ### Pi4 - 192.168.68.102
@@ -22,7 +24,6 @@ Dashboard configuration for Robert's home server cluster.
 
 ### Pi5 - 192.168.68.108
 - AzuraCast (Dublin Calling Radio)
-- Gallery v3 (nHentai Downloader)
 - Uptime Kuma (Service Monitoring)
 - Changedetection (Website Monitoring)
 - qBittorrent (Download Client)
