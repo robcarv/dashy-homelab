@@ -2,11 +2,11 @@
 
 Dashboard configuration for Robert's home server cluster.
 
-**Dashy v4.2.4** running on both Pi4 (192.168.68.102) and Pi501 (192.168.68.117).
+**Dashy v4.2.4** running on both Pi4 and Pi501.
 
 **Dashboards:**
-- Pi501: http://192.168.68.117:8200
-- Pi4: http://192.168.68.102:8200
+- Pi501:8200 (local network)
+- Pi4:8200 (local network)
 
 **Portfolio:** https://robcarv.github.io
 
@@ -14,7 +14,7 @@ Dashboard configuration for Robert's home server cluster.
 
 ## Infrastructure Overview
 
-### Pi4 - 192.168.68.102
+### Pi4
 - Pi-hole (DNS Ad-blocker)
 - Dashy (Dashboard)
 - Nginx Proxy Manager (SSL Reverse Proxy)
@@ -22,21 +22,21 @@ Dashboard configuration for Robert's home server cluster.
 - Glances (System Monitoring)
 - Duplicati (Backups)
 
-### Pi5 - 192.168.68.108
+### Pi5
 - AzuraCast (Dublin Calling Radio)
 - Uptime Kuma (Service Monitoring)
 - Changedetection (Website Monitoring)
 - qBittorrent (Download Client)
 - Glances (System Monitoring)
 
-### Pi501 - 192.168.68.117
+### Pi501
 - Dashy (Dashboard)
 - Hermes Agent (AI CLI Agent)
 - Speedtest Tracker (Network Monitoring)
 - Discount Bandit (Deal Monitor)
 - Nginx Proxy Manager (Reverse Proxy)
 
-### TrueNAS Scale - 192.168.68.124
+### TrueNAS Scale
 - NVMe Pool 10.9TB
 - Jellyfin (Media Server)
 - Immich (Photo Management)
