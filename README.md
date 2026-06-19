@@ -82,16 +82,7 @@ Dashboard configuration for Robert's home server cluster.
 - Tailscale (VPN)
 - SMB Shares: Media, CloudBackup
 
-## IBM QE FTM Section
 
-22 links organized by category:
-- **CI/CD**: QA Automation Jenkins, FTM Regression PL
-- **Code**: GitHub Enterprise, FTM Dev Playbook
-- **Quality**: Jazz RQM, Zenhub QA
-- **Monitoring**: Instana, Bobalytics, FTM QA Dashboard
-- **Platforms**: 5 OpenShift clusters
-- **Tools**: Artifactory, UrbanCode Deploy
-- **Internal**: w3, IBM Learning, IBM Docs, Fix Central, Concur
 
 ## Related Repositories
 
